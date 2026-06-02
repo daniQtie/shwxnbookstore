@@ -35,7 +35,7 @@ export default function AdminOrdersPage() {
         const newOnes = list.filter((o) => !seenIdsRef.current!.has(o.id));
         newOnes.forEach((o) => {
           seenIdsRef.current!.add(o.id);
-          toast.success(`New pre-order from ${o.customer_name}`, {
+          toast.success(`New order from ${o.customer_name}`, {
             icon: '📦',
             duration: 5000,
           });
@@ -362,7 +362,7 @@ function NotifyCustomerSection({ order }: { order: Order }) {
   const message =
 `Hi ${firstName}! 📦
 
-Your pre-order from shwxn.bookstore is on the way!
+Your order from shwxn.bookstore is on the way!
 
 Courier: ${courierName}
 Tracking #: ${order.tracking_number}
@@ -370,7 +370,7 @@ Tracking #: ${order.tracking_number}
 Track your shipment here:
 ${trackUrl}
 
-Salamat sa iyong pre-order — abangan mo na lang yung delivery! 💚
+Salamat sa iyong pag order — abangan mo na lang yung delivery! 💚
 
 — shwxn.bookstore`;
 

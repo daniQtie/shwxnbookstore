@@ -153,7 +153,7 @@ export default function ReceiptPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 px-8 py-5 bg-cream-100/50 border-b border-cream-300 text-sm">
           <Meta label="Order #" value={`#${orderShort}`} />
           <Meta label="Date" value={dateStr} />
-          <Meta label="Type" value={order.type === 'preorder' ? 'Pre-order' : order.type} />
+          <Meta label="Type" value={order.type === 'preorder' ? 'Order' : order.type} />
         </div>
 
         {/* Customer */}
@@ -242,7 +242,7 @@ export default function ReceiptPage() {
         {/* Footer */}
         <div className="px-8 py-6 text-center">
           <div className="font-serif italic text-ink-500 text-sm">
-            Salamat sa iyong pre-order!
+            Salamat sa iyong pag order!
           </div>
           <div className="mt-1 text-xs text-ink-50">
             Questions? Reach us via Messenger or hello@shwxnbookstore.ph
