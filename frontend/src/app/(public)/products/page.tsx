@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { api } from '@/lib/api';
 import type { Category, Product } from '@/lib/types';
@@ -8,7 +8,30 @@ import { ProductSkeleton } from '@/components/Skeleton';
 import Reveal from '@/components/Reveal';
 import { Search } from 'lucide-react';
 
+// Next.js 14 requires useSearchParams() to be wrapped in <Suspense> for prerendering
 export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsView />
+    </Suspense>
+  );
+}
+
+function ProductsLoading() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-2xl">
+        <div className="skeleton h-4 w-24" />
+        <div className="skeleton h-12 w-64 mt-3" />
+      </div>
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)}
+      </div>
+    </div>
+  );
+}
+
+function ProductsView() {
   const params = useSearchParams();
   const [products, setProducts] = useState<Product[] | null>(null);
   const [cats, setCats] = useState<Category[]>([]);
