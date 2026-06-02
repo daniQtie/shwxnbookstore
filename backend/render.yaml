@@ -1,0 +1,19 @@
+# Render.com blueprint — auto-detected when you connect this repo.
+# This is optional; you can also configure manually via the Render dashboard.
+services:
+  - type: web
+    name: shwxnbookstore-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # All other secrets must be added in the Render dashboard:
+      # JWT_SECRET, FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL,
+      # FIREBASE_PRIVATE_KEY, CLOUDINARY_*, FRONTEND_ORIGIN
